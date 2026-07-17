@@ -1,0 +1,4 @@
+# Configuration file for sample input and options 
+
+# Loading the sample table 
+sample_table: "config/samples.csv"

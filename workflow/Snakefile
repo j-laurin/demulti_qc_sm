@@ -1,0 +1,38 @@
+# Snakemake pipeline for QC and demultiplexing of Vilardo libraries
+# by Josef Laurin, 2026
+
+# Load configuration
+# ------------------
+configfile: "config/config.yaml"
+
+import pandas as pd
+
+# Sample wildcard constrains
+wildcard_constraints:
+    sample = "[^.]+"
+
+# Parse sample names
+samples_df = pd.read_csv(config["sample_table"], sep=",")
+SAMPLES = samples_df["file_name"].tolist()
+
+# Include rules
+# -------------
+
+include: "rules/demultiplex.smk"
+
+
+
+# Rules
+# -----
+
+
+rule all:
+    default_target: True
+    input:
+
+    output:
+        "get_all_results.txt"
+    run:
+        with open(str(output),"w") as file:
+            for f in input:
+                file.write(f+"\n")
