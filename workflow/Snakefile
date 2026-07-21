@@ -9,16 +9,28 @@ import pandas as pd
 
 # Sample wildcard constrains
 wildcard_constraints:
-    sample = "[^.]+"
+    sample = "[^/]+"
 
 # Parse sample names
-samples_df = pd.read_csv(config["sample_table"], sep=",")
+samples_df = pd.read_csv(config["sample_table"], sep=",", dtype=str, encoding="utf-8-sig")
+samples_df = samples_df.set_index("file_name", drop=False)
 SAMPLES = samples_df["file_name"].tolist()
+
+# All index names
+
+BARCODES = ["i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8"]
+
+# Keeping only the ones specified in sample list
+
+def get_keep_list(sample):
+    digits = samples_df.loc[sample, "indexes"]  # e.g. "1234"
+    return [f"i{d}" for d in digits]          # ["i1","i2","i3","i4"]
 
 # Include rules
 # -------------
 
 include: "rules/demultiplex.smk"
+include: "rules/qc.smk"
 
 
 
@@ -29,7 +41,7 @@ include: "rules/demultiplex.smk"
 rule all:
     default_target: True
     input:
-
+        "results/multiqc_report.html"
     output:
         "get_all_results.txt"
     run:

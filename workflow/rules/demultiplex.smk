@@ -3,21 +3,21 @@
 
 rule demultiplex:
     input:
-        fastq ="data/{sample}.fastq.gz",
-        barcodes ="config/barcodes.fa"
+        fastq="data/{sample}.fastq.gz",
+        barcodes="config/barcodes.fa"
     output:
-        temp("results/{sample}.demulti.fastq.gz")
+        temp(expand("data/trimmed/{{sample}}/{barcode}.fastq.gz", barcode=BARCODES))
     log:
-        "results/logs/{sample}.demulti.txt"
+        "logs/{sample}.txt"
     message:
         """--- Demultiplexing based on adaptor sequences"""
-    threads: 
-        8
+    threads: 8
+    params:
+        outdir=lambda wc: f"data/trimmed/{wc.sample}"
     shell:
         """
-        (cutadapt -j {threads} -m 20 -O 20 -a "polyA=A{{20}}" -a "QUALITY=G{{20}}" -n 2 {input.fq} | \
-        cutadapt -j {threads} -m 20 -O 3 --nextseq-trim=10 -a "r1adapter=A{{18}}AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC;min_overlap=3;max_error_rate=0.100000" - | \
-        cutadapt -j {threads} -m 20 -O 20 -g "r1adapter=AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC;min_overlap=20" --discard-trimmed -o {output} -) \
-        > {log} 2>&1
+        mkdir -p {params.outdir}
+        cutadapt -g file:{input.barcodes} \
+            -o {params.outdir}/{{name}}.fastq.gz \
+            {input.fastq} > {params.outdir}/cutadapt.log
         """
-
