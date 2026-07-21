@@ -1,26 +1,17 @@
-# Function for keeping the specified demux files
-
-def all_kept_demux_files():
-    files = []
-    for sample in SAMPLES:
-        for bc in get_keep_list(sample):
-            files.append(f"data/trimmed/{sample}/{bc}.fastq.gz")
-    return files
-
 # QC report generation
 # --------------------
 
 rule fastqc:
     input:
-        "data/trimmed/{sample}/{bc}.fastq.gz"
+        "data/trimmed/{sample}/{sample}_{bc}.fastq.gz"
     output:
        html = "data/fastqc/{sample}_{bc}_fastqc.html",
         zip = "data/fastqc/{sample}_{bc}_fastqc.zip"
     message:
         """--- Checking fastq files with FastQC."""
     params:
-        outdir=lambda wc: f"data/fastqc/tmp_{wc.sample}",
-        prefix=lambda wc: f"{wc.bc}"
+        outdir=lambda wc: f"data/fastqc/tmp_{wc.sample}_{wc.bc}",
+        prefix=lambda wc: f"{wc.sample}_{wc.bc}"
     shell:
         """
         mkdir -p {params.outdir}

@@ -18,13 +18,13 @@ SAMPLES = samples_df["file_name"].tolist()
 
 # All index names
 
-BARCODES = ["i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8"]
+BARCODES = ["I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8"]
 
 # Keeping only the ones specified in sample list
 
 def get_keep_list(sample):
     digits = samples_df.loc[sample, "indexes"]  # e.g. "1234"
-    return [f"i{d}" for d in digits]          # ["i1","i2","i3","i4"]
+    return [f"I{d}" for d in digits]          # ["i1","i2","i3","i4"]
 
 # Include rules
 # -------------

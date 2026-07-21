@@ -1,0 +1,15 @@
+This is cutadapt 4.9 with Python 3.12.8
+Command line parameters: -j 8 -u 3 -u -6 -m 19 -o data/trimmed/EV22004.R1/EV22004.R1_I8.fastq.gz data/trimmed/EV22004.R1/tmp_demux/I8.fastq.gz
+Processing single-end reads on 8 cores ...
+Finished in 10.489 s (1.820 µs/read; 32.96 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:               5,762,347
+
+== Read fate breakdown ==
+Reads that were too short:             245,883 (4.3%)
+Reads written (passing filters):     5,516,464 (95.7%)
+
+Total basepairs processed:   208,173,280 bp
+Total written (filtered):    152,817,161 bp (73.4%)
