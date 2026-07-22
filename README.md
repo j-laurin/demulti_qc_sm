@@ -20,7 +20,8 @@ Download this Snakemake workflow, e.g., with `git clone`:
 ### Fill in the sample list in config folder and transfer raw fastq.gz files into the data folder. Fill in the table as usual if using MS Excel. 
 
 Sample file you can download here: https://github.com/j-laurin/demulti_qc_sm/blob/main/config/samples.csv
-or use the file from the repository. When downloading, replace the samples.csv with edited one your cloned repository.
+
+or use the file from the repository. If downloading as an extra file, replace the samples.csv with edited one your cloned repository.
 
 The file name and the indexes used are seprated by a single comma in texteditors.
 
