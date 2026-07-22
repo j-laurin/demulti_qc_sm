@@ -17,10 +17,57 @@ Download this Snakemake workflow, e.g., with `git clone`:
   ```
 
 
+Fill in the sample list in config folder and transfer raw fastq.gz files into the data folder. Fill in the table as usual if using MS Excel. 
+
+The file name and the indexes used are seprated by a single comma in texteditors.
+
+
+| file_name   | indexes | 
+| ----------- | --------|
+| EV230201    | 1234    | 
+| EV230202    | 5678    | 
+
 Following dependencies are required for the pipeline:
 
 - [Snakemake](https://snakemake.readthedocs.io/en/stable/#getting-started)
 - cutadapt
 - fastqc
 - multiqc
+- seaborn
 
+
+To install dependecies, create a conda environment for this pipeline: 
+
+```bash
+conda create -n lib_qc -c conda-forge -c bioconda snakemake cutadapt fastqc multiqc seaborn
+```
+
+Then activate the environment:
+
+```bash
+conda activate lib_qc
+```
+
+And run the pipeline:
+
+```bash
+snakemake -c 2 "get_all_results.txt"
+```
+
+ Replace '2' with the number of cores you wish to use, at least 2.
+
+To see how many cores you have available on linux machines, run:
+  
+  ```bash
+  nproc
+  ```
+
+Settings:
+
+You can modify the minimum length of sequences kept by modifying the 'length_cutoff' 
+in the config.yaml file in the config folder.
+The default is set to 19 nt (lowest nt count after adaptor removal can be 10nt). 
+
+  ```bash
+  length_cutoff: 19
+  ```

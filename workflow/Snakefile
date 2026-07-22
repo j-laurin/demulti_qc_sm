@@ -41,7 +41,9 @@ include: "rules/qc.smk"
 rule all:
     default_target: True
     input:
-        "results/multiqc_report.html"
+        "results/multiqc_report.html",
+        "results/read_distribution_plots.pdf",
+        "results/read_distribution_table.csv"
     output:
         "get_all_results.txt"
     run:

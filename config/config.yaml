@@ -2,3 +2,6 @@
 
 # Loading the sample table 
 sample_table: "config/samples.csv"
+
+# Minimum length of sequences to discard
+length_cutoff: 19
