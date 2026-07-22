@@ -52,7 +52,7 @@ Then activate the environment:
 conda activate lib_qc
 ```
 
-And run the pipeline:
+And run the pipeline when in the cloned repository (demulti_qc_sm folder):
 
 ```bash
 snakemake -c 2 "get_all_results.txt"
