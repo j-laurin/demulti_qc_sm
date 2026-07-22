@@ -17,7 +17,7 @@ Download this Snakemake workflow, e.g., with `git clone`:
   ```
 
 
-###Fill in the sample list in config folder and transfer raw fastq.gz files into the data folder. Fill in the table as usual if using MS Excel. 
+### Fill in the sample list in config folder and transfer raw fastq.gz files into the data folder. Fill in the table as usual if using MS Excel. 
 
 The file name and the indexes used are seprated by a single comma in texteditors.
 
@@ -27,7 +27,7 @@ The file name and the indexes used are seprated by a single comma in texteditors
 | EV230201    | 1234    | 
 | EV230202    | 5678    | 
 
-###Following dependencies are required for the pipeline:
+### Following dependencies are required for the pipeline:
 
 - [Snakemake](https://snakemake.readthedocs.io/en/stable/#getting-started)
 - cutadapt
@@ -62,9 +62,9 @@ To see how many cores you have available on linux machines, run:
   nproc
   ```
 
-###All your results will be then located in the results folder. 
+### All your results will be then located in the results folder. 
 
-###Settings:
+### Settings:
 
 You can modify the minimum length of sequences kept by modifying the 'length_cutoff' 
 in the config.yaml file in the config folder.
