@@ -123,7 +123,7 @@ def make_sample_page(pdf: PdfPages, stats: dict):
 
     plt.tight_layout(rect=[0, 0.28, 1, 0.95])
 
-    ax_table = fig.add_axes([0.08, 0.02, 0.84, 0.20])
+    ax_table = fig.add_axes([0.08, 0.02, 0.84, 0.35])
     ax_table.axis("off")
     tbl = ax_table.table(
         cellText=table_df.values,
