@@ -17,19 +17,26 @@ Download this Snakemake workflow, e.g., with `git clone`:
   ```
 
 
-### Fill in the sample list in config folder and transfer raw fastq.gz files into the data folder. Fill in the table as usual if using MS Excel. 
-
-Sample file you can download here: https://github.com/j-laurin/demulti_qc_sm/blob/main/config/samples.csv
-
-or use the file from the repository. If downloading as an extra file, replace the samples.csv with edited one your cloned repository.
+### Fill in the sample list (samples.csv) in config folder and transfer raw fastq.gz files into the data folder. 
+Table can be filled in command line using e.g. ```nano```
 
 The file name and the indexes used are seprated by a single comma in texteditors.
 
+e.g. sample EV230201.fastq.gz using indexes i1,i5 and i8: EV230201,158
 
+
+Table can be also filled in using MS Excel. 
+
+Table layout: 
 | file_name   | indexes | 
 | ----------- | --------|
 | EV230201    | 1234    | 
 | EV230202    | 5678    | 
+
+Sample file can be download here if needed extra : https://github.com/j-laurin/demulti_qc_sm/blob/main/config/samples.csv 
+
+If downloading as an extra file, replace the samples.csv with edited one your cloned repository.
+
 
 ### Following dependencies are required for the pipeline:
 
@@ -52,7 +59,7 @@ Then activate the environment:
 conda activate lib_qc
 ```
 
-And run the pipeline when in the cloned repository (demulti_qc_sm folder):
+And run the pipeline when in the cloned repository (demulti_qc_sm folder, navigate with ```cd```):
 
 ```bash
 snakemake -c 2 "get_all_results.txt"
