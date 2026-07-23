@@ -133,7 +133,7 @@ def make_sample_page(pdf: PdfPages, stats: dict):
     )
     tbl.auto_set_font_size(False)
     tbl.set_fontsize(8)
-    tbl.scale(1, 1.3)
+    tbl.scale(1, 2.5)
 
     pdf.savefig(fig)
     plt.close(fig)

@@ -6,7 +6,7 @@ rule demultiplex:
         fastq="data/{sample}.fastq.gz",
         barcodes="config/barcodes.fa"
     output:
-        temp(expand("data/trimmed/{{sample}}/{sample}_{barcode}.fastq.gz", barcode=BARCODES, sample=SAMPLES)),
+        temp(expand("data/trimmed/{{sample}}/{{sample}}_{barcode}.fastq.gz", barcode=BARCODES)),
         done=touch("logs/{sample}_3_umi_cut.done")
     message:
         """--- Demultiplexing based on adaptor sequences"""
